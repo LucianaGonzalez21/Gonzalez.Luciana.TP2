@@ -1,0 +1,202 @@
+[
+  {
+    "Numero": 1,
+    "Palo": "Espada",
+    "Peso": 13
+  },
+  {
+    "Numero": 2,
+    "Palo": "Espada",
+    "Peso": 8
+  },
+  {
+    "Numero": 3,
+    "Palo": "Espada",
+    "Peso": 9
+  },
+  {
+    "Numero": 4,
+    "Palo": "Espada",
+    "Peso": 0
+  },
+  {
+    "Numero": 5,
+    "Palo": "Espada",
+    "Peso": 1
+  },
+  {
+    "Numero": 6,
+    "Palo": "Espada",
+    "Peso": 2
+  },
+  {
+    "Numero": 7,
+    "Palo": "Espada",
+    "Peso": 11
+  },
+  {
+    "Numero": 10,
+    "Palo": "Espada",
+    "Peso": 4
+  },
+  {
+    "Numero": 11,
+    "Palo": "Espada",
+    "Peso": 5
+  },
+  {
+    "Numero": 12,
+    "Palo": "Espada",
+    "Peso": 6
+  },
+  {
+    "Numero": 1,
+    "Palo": "Oro",
+    "Peso": 7
+  },
+  {
+    "Numero": 2,
+    "Palo": "Oro",
+    "Peso": 8
+  },
+  {
+    "Numero": 3,
+    "Palo": "Oro",
+    "Peso": 9
+  },
+  {
+    "Numero": 4,
+    "Palo": "Oro",
+    "Peso": 0
+  },
+  {
+    "Numero": 5,
+    "Palo": "Oro",
+    "Peso": 1
+  },
+  {
+    "Numero": 6,
+    "Palo": "Oro",
+    "Peso": 2
+  },
+  {
+    "Numero": 7,
+    "Palo": "Oro",
+    "Peso": 10
+  },
+  {
+    "Numero": 10,
+    "Palo": "Oro",
+    "Peso": 4
+  },
+  {
+    "Numero": 11,
+    "Palo": "Oro",
+    "Peso": 5
+  },
+  {
+    "Numero": 12,
+    "Palo": "Oro",
+    "Peso": 6
+  },
+  {
+    "Numero": 1,
+    "Palo": "Copa",
+    "Peso": 7
+  },
+  {
+    "Numero": 2,
+    "Palo": "Copa",
+    "Peso": 8
+  },
+  {
+    "Numero": 3,
+    "Palo": "Copa",
+    "Peso": 9
+  },
+  {
+    "Numero": 4,
+    "Palo": "Copa",
+    "Peso": 0
+  },
+  {
+    "Numero": 5,
+    "Palo": "Copa",
+    "Peso": 1
+  },
+  {
+    "Numero": 6,
+    "Palo": "Copa",
+    "Peso": 2
+  },
+  {
+    "Numero": 7,
+    "Palo": "Copa",
+    "Peso": 3
+  },
+  {
+    "Numero": 10,
+    "Palo": "Copa",
+    "Peso": 4
+  },
+  {
+    "Numero": 11,
+    "Palo": "Copa",
+    "Peso": 5
+  },
+  {
+    "Numero": 12,
+    "Palo": "Copa",
+    "Peso": 6
+  },
+  {
+    "Numero": 1,
+    "Palo": "Basto",
+    "Peso": 12
+  },
+  {
+    "Numero": 2,
+    "Palo": "Basto",
+    "Peso": 8
+  },
+  {
+    "Numero": 3,
+    "Palo": "Basto",
+    "Peso": 9
+  },
+  {
+    "Numero": 4,
+    "Palo": "Basto",
+    "Peso": 0
+  },
+  {
+    "Numero": 5,
+    "Palo": "Basto",
+    "Peso": 1
+  },
+  {
+    "Numero": 6,
+    "Palo": "Basto",
+    "Peso": 2
+  },
+  {
+    "Numero": 7,
+    "Palo": "Basto",
+    "Peso": 3
+  },
+  {
+    "Numero": 10,
+    "Palo": "Basto",
+    "Peso": 4
+  },
+  {
+    "Numero": 11,
+    "Palo": "Basto",
+    "Peso": 5
+  },
+  {
+    "Numero": 12,
+    "Palo": "Basto",
+    "Peso": 6
+  }
+]
