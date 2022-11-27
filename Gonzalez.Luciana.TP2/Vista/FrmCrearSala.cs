@@ -53,6 +53,7 @@ namespace Vista
 
         private void button1_Click(object sender, EventArgs e)
         {
+            lblError.Visible = false;
             FrmElegirJugador frmElegirJugador = new FrmElegirJugador();
             DialogResult resultado = frmElegirJugador.ShowDialog();
 
@@ -66,6 +67,7 @@ namespace Vista
 
         private void btnElegirJugadorDos_Click(object sender, EventArgs e)
         {
+            lblError.Visible = false;
             FrmElegirJugador frmElegirJugador = new FrmElegirJugador();
             DialogResult resultado = frmElegirJugador.ShowDialog();
 
@@ -85,6 +87,11 @@ namespace Vista
                 return true;
             }
             return false;
+        }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

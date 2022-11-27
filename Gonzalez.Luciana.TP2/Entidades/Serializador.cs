@@ -34,6 +34,10 @@ namespace Entidades
 
                 return objeto;
             }
+            catch (FileNotFoundException exc)
+            {
+                throw new FileNotFoundException("No se encontro el archivo Mazo de Cartas", exc);
+            }
             catch (Exception exc)
             {
                 throw new Exception("Ocurrio un problema al cargar las cartas", exc);

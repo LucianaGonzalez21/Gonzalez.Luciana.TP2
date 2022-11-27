@@ -35,6 +35,16 @@ namespace Entidades.Test
         }
 
         [TestMethod]
+        [ExpectedException(typeof(FileNotFoundException))]
+        public void LanzarExcepcionSiNoEncuentraLaRutaDelArchivo()
+        {
+            //given
+
+            //when
+            List<Carta> mazo = Serializador.Leer<List<Carta>>("");
+        }
+
+        [TestMethod]
         public void DefinirCartaGanadoraCorrectamente()
         {
             //given

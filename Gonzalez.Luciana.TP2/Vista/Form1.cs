@@ -13,7 +13,7 @@ using Entidades;
 
 namespace Vista
 {
-    public partial class FrmPartida : Form
+    public partial class FrmPartida : Form , IHilos , IPartidaFinalizada
     {
         public Action<string> mostrarNotificacion;
         Partida partida;
@@ -93,12 +93,20 @@ namespace Vista
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
-            sala.J1.EstaJugando = false;
-            sala.J2.EstaJugando = false;
-            SqlJugador.ModificarPartidasYEstadoDeJugador(sala.J1);
-            SqlJugador.ModificarPartidasYEstadoDeJugador(sala.J2);
+            //sala.J1.EstaJugando = false;
+            //sala.J2.EstaJugando = false;
+            //SqlJugador.ModificarPartidasYEstadoDeJugador(sala.J1);
+            //SqlJugador.ModificarPartidasYEstadoDeJugador(sala.J2);
+            FinalizarPartida(sala.J1);
+            FinalizarPartida(sala.J2);
             partida.GuardarHistorialPartida(historialPartida);
             cancellationTokenSource.Cancel();
+        }
+
+        public void FinalizarPartida(Jugador j)
+        {
+            j.EstaJugando = false;
+            SqlJugador.ModificarPartidasYEstadoDeJugador(j);
         }
 
     }

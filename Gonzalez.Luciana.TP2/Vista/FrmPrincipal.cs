@@ -22,7 +22,18 @@ namespace Vista
         {
             InitializeComponent();
             rutaArchivo = $"{AppDomain.CurrentDomain.BaseDirectory}" + @"mazoCartas.json";
-            mazo = Serializador.Leer<List<Carta>>(rutaArchivo);
+            try
+            {
+                mazo = Serializador.Leer<List<Carta>>(rutaArchivo);
+            }
+            catch (FileNotFoundException exc)
+            {
+                MessageBox.Show(exc.Message);   
+            }
+            catch (Exception exc)
+            {
+                MessageBox.Show(exc.Message);
+            }
         }
 
         private void btnRegistrarJugador_Click(object sender, EventArgs e)
@@ -85,16 +96,34 @@ namespace Vista
         {
             if (sala is not null)
             {
-                if (Administrador.ValidarJugadoresEstenLibresParaJugar(sala.J1, sala.J2))
+                try
                 {
-                    sala.Mazo = mazo;
-                    FrmPartida frmPartida = new FrmPartida(sala);
-                    frmPartida.Show();
+                    if (Administrador.ValidarJugadoresEstenLibresParaJugar(sala.J1, sala.J2))
+                    {
+                        if (mazo is not null)
+                        {
+                            sala.Mazo = mazo;
+                            FrmPartida frmPartida = new FrmPartida(sala);
+                            frmPartida.Show();
+                        }
+                        else
+                        {
+                            MessageBox.Show("No se puede comenzar la partida porque no se pudieron cargas las cartas");
+                        }
+                    }
+                    else
+                    {
+                        lblError.Text = MostrarMensajeErrorJugadorOcupado(sala.J1, sala.J2);
+                        lblError.Visible = true;
+                    }
                 }
-                else
-                {                   
-                    lblError.Text = MostrarMensajeErrorJugadorOcupado(sala.J1, sala.J2);
-                    lblError.Visible = true;
+                catch (ArgumentNullException exc)
+                {
+                    MessageBox.Show(exc.Message);
+                }
+                catch (Exception exc)
+                {
+                    MessageBox.Show(exc.Message);
                 }
             }
             else
@@ -124,7 +153,7 @@ namespace Vista
                 Estadisticas frmEstadisticas = new Estadisticas("Jugadores ordenados por nombre", listaJugadores);
                 frmEstadisticas.ShowDialog();
             }
-            catch(Exception exc)
+            catch (Exception exc)
             {
                 MessageBox.Show(exc.Message);
             }

@@ -8,9 +8,8 @@ using System.Threading.Tasks;
 
 namespace Entidades
 {
-    public class Partida
+    public class Partida : IHilos , IPartidaFinalizada
     {
-        int id;
         private Sala sala;
         private int rondas; //3 rondas
         private string historialPartida;
@@ -31,21 +30,6 @@ namespace Entidades
             this.Rondas=rondas;
             this.Truco=truco;
             this.mostrarNotificacion = mostrarNotificacion;
-        }
-
-        public static bool operator ==(Partida p1, Partida p2)
-        {
-            if (p1 is null || p2 is null)
-            {
-                return false;
-            }
-
-            return p1.JugadorUno == p2.JugadorUno && p1.JugadorDos == p2.JugadorDos;
-        }
-
-        public static bool operator !=(Partida p1, Partida p2)
-        {
-            return !(p1 == p2);
         }
 
         public Jugador DefinirQuienEsMano(Jugador j1, Jugador j2, int flag)
