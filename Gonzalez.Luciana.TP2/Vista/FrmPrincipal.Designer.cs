@@ -33,15 +33,20 @@ namespace Vista
             this.btnVerJugadores = new System.Windows.Forms.Button();
             this.btnRegistrarJugador = new System.Windows.Forms.Button();
             this.dgvSalas = new System.Windows.Forms.DataGridView();
-            this.lblTitulo = new System.Windows.Forms.Label();
+            this.lblTituloSalas = new System.Windows.Forms.Label();
             this.btnVerPartida = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
+            this.lblError = new System.Windows.Forms.Label();
+            this.lblTituloEstadisticas = new System.Windows.Forms.Label();
+            this.btnPartidasGanadas = new System.Windows.Forms.Button();
+            this.btnPartidasPerdidas = new System.Windows.Forms.Button();
+            this.btnPuntajesMaximos = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSalas)).BeginInit();
             this.SuspendLayout();
             // 
             // btnCrearSala
             // 
-            this.btnCrearSala.Location = new System.Drawing.Point(44, 47);
+            this.btnCrearSala.Location = new System.Drawing.Point(47, 312);
             this.btnCrearSala.Name = "btnCrearSala";
             this.btnCrearSala.Size = new System.Drawing.Size(111, 68);
             this.btnCrearSala.TabIndex = 0;
@@ -51,7 +56,7 @@ namespace Vista
             // 
             // btnVerJugadores
             // 
-            this.btnVerJugadores.Location = new System.Drawing.Point(307, 47);
+            this.btnVerJugadores.Location = new System.Drawing.Point(308, 312);
             this.btnVerJugadores.Name = "btnVerJugadores";
             this.btnVerJugadores.Size = new System.Drawing.Size(111, 68);
             this.btnVerJugadores.TabIndex = 1;
@@ -61,7 +66,7 @@ namespace Vista
             // 
             // btnRegistrarJugador
             // 
-            this.btnRegistrarJugador.Location = new System.Drawing.Point(173, 47);
+            this.btnRegistrarJugador.Location = new System.Drawing.Point(179, 312);
             this.btnRegistrarJugador.Name = "btnRegistrarJugador";
             this.btnRegistrarJugador.Size = new System.Drawing.Size(111, 68);
             this.btnRegistrarJugador.TabIndex = 2;
@@ -72,38 +77,39 @@ namespace Vista
             // dgvSalas
             // 
             this.dgvSalas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvSalas.Location = new System.Drawing.Point(44, 169);
+            this.dgvSalas.Location = new System.Drawing.Point(44, 58);
             this.dgvSalas.Name = "dgvSalas";
             this.dgvSalas.RowHeadersWidth = 51;
             this.dgvSalas.RowTemplate.Height = 29;
+            this.dgvSalas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvSalas.Size = new System.Drawing.Size(438, 188);
             this.dgvSalas.TabIndex = 3;
             this.dgvSalas.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPartidas_CellClick);
             this.dgvSalas.Click += new System.EventHandler(this.dgvPartidas_Click);
             // 
-            // lblTitulo
+            // lblTituloSalas
             // 
-            this.lblTitulo.AutoSize = true;
-            this.lblTitulo.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblTitulo.Location = new System.Drawing.Point(44, 132);
-            this.lblTitulo.Name = "lblTitulo";
-            this.lblTitulo.Size = new System.Drawing.Size(56, 28);
-            this.lblTitulo.TabIndex = 4;
-            this.lblTitulo.Text = "Salas";
+            this.lblTituloSalas.AutoSize = true;
+            this.lblTituloSalas.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lblTituloSalas.Location = new System.Drawing.Point(44, 21);
+            this.lblTituloSalas.Name = "lblTituloSalas";
+            this.lblTituloSalas.Size = new System.Drawing.Size(56, 28);
+            this.lblTituloSalas.TabIndex = 4;
+            this.lblTituloSalas.Text = "Salas";
             // 
             // btnVerPartida
             // 
-            this.btnVerPartida.Location = new System.Drawing.Point(498, 169);
+            this.btnVerPartida.Location = new System.Drawing.Point(498, 58);
             this.btnVerPartida.Name = "btnVerPartida";
             this.btnVerPartida.Size = new System.Drawing.Size(111, 33);
             this.btnVerPartida.TabIndex = 5;
-            this.btnVerPartida.Text = "Comenzar Partida";
+            this.btnVerPartida.Text = "Comenzar ";
             this.btnVerPartida.UseVisualStyleBackColor = true;
             this.btnVerPartida.Click += new System.EventHandler(this.btnVerPartida_Click);
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(445, 47);
+            this.button1.Location = new System.Drawing.Point(44, 453);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(111, 68);
             this.button1.TabIndex = 6;
@@ -111,14 +117,69 @@ namespace Vista
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // lblError
+            // 
+            this.lblError.AutoSize = true;
+            this.lblError.Location = new System.Drawing.Point(44, 264);
+            this.lblError.Name = "lblError";
+            this.lblError.Size = new System.Drawing.Size(100, 20);
+            this.lblError.TabIndex = 7;
+            this.lblError.Text = "mensaje error";
+            this.lblError.Visible = false;
+            // 
+            // lblTituloEstadisticas
+            // 
+            this.lblTituloEstadisticas.AutoSize = true;
+            this.lblTituloEstadisticas.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lblTituloEstadisticas.Location = new System.Drawing.Point(48, 402);
+            this.lblTituloEstadisticas.Name = "lblTituloEstadisticas";
+            this.lblTituloEstadisticas.Size = new System.Drawing.Size(111, 28);
+            this.lblTituloEstadisticas.TabIndex = 8;
+            this.lblTituloEstadisticas.Text = "Estadisticas";
+            // 
+            // btnPartidasGanadas
+            // 
+            this.btnPartidasGanadas.Location = new System.Drawing.Point(173, 453);
+            this.btnPartidasGanadas.Name = "btnPartidasGanadas";
+            this.btnPartidasGanadas.Size = new System.Drawing.Size(111, 68);
+            this.btnPartidasGanadas.TabIndex = 9;
+            this.btnPartidasGanadas.Text = "Partidas Ganadas";
+            this.btnPartidasGanadas.UseVisualStyleBackColor = true;
+            this.btnPartidasGanadas.Click += new System.EventHandler(this.btnPartidasGanadas_Click);
+            // 
+            // btnPartidasPerdidas
+            // 
+            this.btnPartidasPerdidas.Location = new System.Drawing.Point(307, 453);
+            this.btnPartidasPerdidas.Name = "btnPartidasPerdidas";
+            this.btnPartidasPerdidas.Size = new System.Drawing.Size(111, 68);
+            this.btnPartidasPerdidas.TabIndex = 10;
+            this.btnPartidasPerdidas.Text = "Partidas Perdidas";
+            this.btnPartidasPerdidas.UseVisualStyleBackColor = true;
+            this.btnPartidasPerdidas.Click += new System.EventHandler(this.btnPartidasPerdidas_Click);
+            // 
+            // btnPuntajesMaximos
+            // 
+            this.btnPuntajesMaximos.Location = new System.Drawing.Point(444, 453);
+            this.btnPuntajesMaximos.Name = "btnPuntajesMaximos";
+            this.btnPuntajesMaximos.Size = new System.Drawing.Size(111, 68);
+            this.btnPuntajesMaximos.TabIndex = 11;
+            this.btnPuntajesMaximos.Text = "Puntajes Maximos";
+            this.btnPuntajesMaximos.UseVisualStyleBackColor = true;
+            this.btnPuntajesMaximos.Click += new System.EventHandler(this.btnPuntajesMaximos_Click);
+            // 
             // FrmPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(622, 415);
+            this.ClientSize = new System.Drawing.Size(639, 545);
+            this.Controls.Add(this.btnPuntajesMaximos);
+            this.Controls.Add(this.btnPartidasPerdidas);
+            this.Controls.Add(this.btnPartidasGanadas);
+            this.Controls.Add(this.lblTituloEstadisticas);
+            this.Controls.Add(this.lblError);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.btnVerPartida);
-            this.Controls.Add(this.lblTitulo);
+            this.Controls.Add(this.lblTituloSalas);
             this.Controls.Add(this.dgvSalas);
             this.Controls.Add(this.btnRegistrarJugador);
             this.Controls.Add(this.btnVerJugadores);
@@ -140,8 +201,13 @@ namespace Vista
         private System.Windows.Forms.Button btnVerJugadores;
         private System.Windows.Forms.Button btnRegistrarJugador;
         private System.Windows.Forms.DataGridView dgvSalas;
-        private System.Windows.Forms.Label lblTitulo;
+        private System.Windows.Forms.Label lblTituloSalas;
         private System.Windows.Forms.Button btnVerPartida;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label lblError;
+        private System.Windows.Forms.Label lblTituloEstadisticas;
+        private System.Windows.Forms.Button btnPartidasGanadas;
+        private System.Windows.Forms.Button btnPartidasPerdidas;
+        private System.Windows.Forms.Button btnPuntajesMaximos;
     }
 }

@@ -42,10 +42,9 @@ namespace Entidades
 
                 return jugadores;
             }
-            catch (Exception)
+            catch (Exception exc)
             {
-
-                throw;
+                throw new Exception("Ocurrio un error al conectar con la base de datos Salas",exc);
             }
             finally
             {
@@ -65,10 +64,9 @@ namespace Entidades
                 command.Parameters.AddWithValue("@JUGADOR_DOS", sala.J2.Nombre);
                 command.ExecuteNonQuery();
             }
-            catch (Exception)
+            catch (Exception exc)
             {
-
-                throw;
+                throw new Exception("Ocurrio un error al conectar con la base de datos Salas", exc);
             }
             finally
             {

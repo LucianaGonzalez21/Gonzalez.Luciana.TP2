@@ -9,8 +9,10 @@ namespace Entidades
         private string nombre;
         private int partidasJugadas;
         private int partidasGanadas;
+        private int partidasPerdidas;
         private List<Carta> cartas;
         private int puntosPartida;
+        private int mayorPuntaje;
         private bool esGanador;
         private bool estaJugando;
 
@@ -24,10 +26,12 @@ namespace Entidades
             this.Cartas = new List<Carta>();
         }
 
-        public Jugador(string nombre, int partidasJugadas, int partidasGanadas, bool estaActivo) : this(nombre)
+        public Jugador(string nombre, int partidasJugadas, int partidasGanadas, int partidasPerdidas, int mayorPuntaje, bool estaActivo) : this(nombre)
         {
-            this.partidasJugadas = partidasJugadas;
-            this.partidasGanadas = partidasGanadas;
+            this.PartidasJugadas = partidasJugadas;
+            this.PartidasGanadas = partidasGanadas;
+            this.PartidasPerdidas = partidasPerdidas;
+            this.MayorPuntaje = mayorPuntaje;
             this.EstaJugando = estaActivo;
         }
         public string Nombre { get => nombre; set => nombre=value; }
@@ -52,7 +56,8 @@ namespace Entidades
         }
 
         public bool EstaJugando { get => estaJugando; set => estaJugando=value; }
-
+        public int PartidasPerdidas { get => partidasPerdidas; set => partidasPerdidas=value; }
+        public int MayorPuntaje { get => mayorPuntaje; set => mayorPuntaje=value; }
 
         public string MostrarCartas()
         {
@@ -71,7 +76,6 @@ namespace Entidades
             Random indiceCarta = new Random();
 
             return this.Cartas[indiceCarta.Next(minimoInclusivo, maximoExclusivo)];
-
         }
 
         public bool CantarEnvido()
@@ -115,7 +119,6 @@ namespace Entidades
             return (random.Next(0, 2) == 1 ? true : false);
         }
 
-
         public static bool operator ==(Jugador j1, Jugador j2)
         {
             if (j1 is null || j2 is null)
@@ -145,9 +148,11 @@ namespace Entidades
 
         public override string ToString()
         {
-            return $"Nombre: {Nombre}{Environment.NewLine}" +
+            return $"{Nombre}{Environment.NewLine}" +
                 $"Partidas jugadas: {partidasJugadas}{Environment.NewLine}" +
-                $"Partidas ganadas: {partidasGanadas}";
+                $"Partidas ganadas: {partidasGanadas}{Environment.NewLine}" +
+                $"Partidas perdidas: {partidasPerdidas}{Environment.NewLine}" +
+                $"Puntaje maximo en una partida: {mayorPuntaje}";
         }
     }
 }

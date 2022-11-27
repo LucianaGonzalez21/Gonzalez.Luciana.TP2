@@ -46,10 +46,13 @@ namespace Vista
             }
             else
             {
-                rtbPartida.Text += texto;
-                rtbPartida.SelectionStart = rtbPartida.Text.Length;
-                rtbPartida.ScrollToCaret();
-                historialPartida = rtbPartida.Text;
+                if (rtbPartida.IsDisposed == false)
+                {
+                    rtbPartida.Text += texto;
+                    rtbPartida.SelectionStart = rtbPartida.Text.Length;
+                    rtbPartida.ScrollToCaret();
+                    historialPartida = rtbPartida.Text;
+                }
             }
         }
 
@@ -72,7 +75,6 @@ namespace Vista
         private void Form1_Load(object sender, EventArgs e)
         {
             Truco truco = new Truco();
-
             partida = new Partida(sala, 3, truco, mostrarNotificacion);
 
             sala.J1.EventoEsGanador += AnunciarGanador;
@@ -87,11 +89,15 @@ namespace Vista
             cancellationToken = cancellationTokenSource.Token;
 
             Task.Run(() => partida.JugarPartida(), cancellationToken);
-            Task.Run(() => partida.GuardarHistorialPartida(historialPartida));
         }
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
+            sala.J1.EstaJugando = false;
+            sala.J2.EstaJugando = false;
+            SqlJugador.ModificarPartidasYEstadoDeJugador(sala.J1);
+            SqlJugador.ModificarPartidasYEstadoDeJugador(sala.J2);
+            partida.GuardarHistorialPartida(historialPartida);
             cancellationTokenSource.Cancel();
         }
 

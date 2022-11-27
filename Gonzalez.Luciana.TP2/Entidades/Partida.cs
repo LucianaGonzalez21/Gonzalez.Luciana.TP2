@@ -35,7 +35,7 @@ namespace Entidades
 
         public static bool operator ==(Partida p1, Partida p2)
         {
-            if(p1 is null || p2 is null)
+            if (p1 is null || p2 is null)
             {
                 return false;
             }
@@ -85,6 +85,9 @@ namespace Entidades
 
         public void JugarPartida()
         {
+            InicializarEstadoJugadores(sala.J1);
+            InicializarEstadoJugadores(sala.J2);
+
             mostrarNotificacion.Invoke($"**Comienzo de la partida**{Environment.NewLine}");
             Thread.Sleep(GenerarNumeroRandom());
 
@@ -100,8 +103,8 @@ namespace Entidades
                 jugadorMano = DefinirQuienEsMano(sala.J1, sala.J2, flagCambioDeMano);
                 jugadorDos = DefinirJugadorDos(jugadorMano);
 
-                InicializarEstadoJugadores(jugadorMano);
-                InicializarEstadoJugadores(jugadorDos);
+                //InicializarEstadoJugadores(jugadorMano);
+                //InicializarEstadoJugadores(jugadorDos);
 
                 mostrarNotificacion.Invoke($"Jugador mano: {jugadorMano.Nombre}{Environment.NewLine}Jugador 2: " +
                     $"{jugadorDos.Nombre}{Environment.NewLine}");
@@ -157,14 +160,20 @@ namespace Entidades
         public void InicializarEstadoJugadores(Jugador j)
         {
             j.EstaJugando = true;
+            SqlJugador.ModificarPartidasYEstadoDeJugador(j);
         }
 
         public void FinalizarPartida(Jugador j)
         {
-            if(j is not null)
+            if (j is not null)
             {
                 j.PartidasJugadas++;
                 j.EstaJugando = false;
+                if (j.PuntosPartida > j.MayorPuntaje)
+                {
+                    j.MayorPuntaje = j.PuntosPartida;
+                }
+                SqlJugador.ModificarPartidasYEstadoDeJugador(j);
             }
         }
 
@@ -182,11 +191,13 @@ namespace Entidades
             {
                 j1.EsGanador = true;
                 j1.PartidasGanadas++;
+                j2.PartidasPerdidas++;
             }
             else if (j1.PuntosPartida < j2.PuntosPartida)
             {
                 j2.EsGanador = true;
                 j2.PartidasGanadas++;
+                j1.PartidasPerdidas++;
             }
         }
 
@@ -373,18 +384,20 @@ namespace Entidades
         }
         public void GuardarHistorialPartida(string historial)
         {
-            StreamWriter historialPartida = new StreamWriter(@"C:\Users\Dell\Desktop\Gonzalez.Luciana.TP2\HistorialPartida", true);
-
             try
             {
+                StreamWriter historialPartida = new StreamWriter($"{AppDomain.CurrentDomain.BaseDirectory}" + @"HistorialPartida", true);
                 historialPartida.WriteLine(historial);
+                historialPartida.Close();
             }
-            catch
+            catch(DirectoryNotFoundException exc)
             {
-                throw;
+                throw new DirectoryNotFoundException("No se encontró el archivo", exc);
             }
-
-            historialPartida.Close();
+            catch(Exception exc)
+            {
+                throw new Exception("Error al guardar el historial de la partida", exc);
+            }
         }
 
     }

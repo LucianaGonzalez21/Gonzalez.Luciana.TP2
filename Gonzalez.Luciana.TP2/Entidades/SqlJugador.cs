@@ -23,9 +23,9 @@ namespace Entidades
                 command.Connection = connection;
                 command.CommandType = System.Data.CommandType.Text;
             }
-            catch (Exception)
+            catch (Exception exc)
             {
-                throw;
+                throw new Exception("Error al conectar con la base de datos Jugadores", exc);
             }
         }
 
@@ -35,6 +35,7 @@ namespace Entidades
 
             try
             {
+                command.Parameters.Clear();
                 connection.Open();
                 command.CommandText = "SELECT * FROM JUGADORES_DB";
                 SqlDataReader dataReader = command.ExecuteReader();
@@ -45,15 +46,16 @@ namespace Entidades
                         (dataReader["NOMBRE"].ToString(),
                         int.Parse(dataReader["PARTIDAS_JUGADAS"].ToString()),
                         int.Parse(dataReader["PARTIDAS_GANADAS"].ToString()),
+                        int.Parse(dataReader["PARTIDAS_PERDIDAS"].ToString()),
+                        int.Parse(dataReader["MAYOR_PUNTAJE"].ToString()),
                         ConvertirEstado(dataReader["ESTA_JUGANDO"].ToString())));
                 }
 
                 return jugadores;
             }
-            catch (Exception)
+            catch (Exception exc)
             {
-
-                throw;
+                throw new Exception("Error al conectar con la base de datos Jugadores", exc);
             }
             finally
             {
@@ -85,19 +87,20 @@ namespace Entidades
             {
                 command.Parameters.Clear();
                 connection.Open();
-                command.CommandText = $"INSERT INTO JUGADORES_DB (NOMBRE, PARTIDAS_JUGADAS, PARTIDAS_GANADAS, ESTA_JUGANDO)" +
-                    $"  VALUES (@NOMBRE, @PARTIDAS_JUGADAS, @PARTIDAS_GANADAS, @ESTA_JUGANDO)";
+                command.CommandText = $"INSERT INTO JUGADORES_DB (NOMBRE, PARTIDAS_JUGADAS, PARTIDAS_GANADAS, PARTIDAS_PERDIDAS, MAYOR_PUNTAJE, ESTA_JUGANDO)" +
+                    $"VALUES (@NOMBRE, @PARTIDAS_JUGADAS, @PARTIDAS_GANADAS, @PARTIDAS_PERDIDAS, @MAYOR_PUNTAJE, @ESTA_JUGANDO)";
                 command.Parameters.AddWithValue("@NOMBRE", jugador.Nombre);
                 command.Parameters.AddWithValue("@PARTIDAS_JUGADAS", jugador.PartidasJugadas);
                 command.Parameters.AddWithValue("@PARTIDAS_GANADAS", jugador.PartidasGanadas);
+                command.Parameters.AddWithValue("@PARTIDAS_PERDIDAS", jugador.PartidasPerdidas);
+                command.Parameters.AddWithValue("@MAYOR_PUNTAJE", jugador.MayorPuntaje);
                 command.Parameters.AddWithValue("@ESTA_JUGANDO", ConvertirEstado(jugador.EstaJugando));
 
                 command.ExecuteNonQuery();
             }
-            catch (Exception)
+            catch (Exception exc)
             {
-
-                throw;
+                throw new Exception("Error al conectar con la base de datos Jugadores al intentar guardar", exc);
             }
             finally
             {
@@ -111,17 +114,19 @@ namespace Entidades
             {
                 command.Parameters.Clear();
                 connection.Open();
-                command.CommandText = "UPDATE JUGADORES_DB SET PARTIDAS_JUGADAS = @PARTIDAS_JUGADAS, PARTIDAS_GANADAS = @PARTIDAS_GANADAS, ESTA_JUGANDO = @ESTA_JUGANDO WHERE NOMBRE = @NOMBRE";
+                command.CommandText = "UPDATE JUGADORES_DB SET PARTIDAS_JUGADAS = @PARTIDAS_JUGADAS, PARTIDAS_GANADAS = @PARTIDAS_GANADAS, PARTIDAS_PERDIDAS = @PARTIDAS_PERDIDAS, MAYOR_PUNTAJE = @MAYOR_PUNTAJE, ESTA_JUGANDO = @ESTA_JUGANDO WHERE NOMBRE = @NOMBRE";
                 command.Parameters.AddWithValue("@NOMBRE", jugador.Nombre);
                 command.Parameters.AddWithValue("@PARTIDAS_JUGADAS", jugador.PartidasJugadas);
                 command.Parameters.AddWithValue("@PARTIDAS_GANADAS", jugador.PartidasGanadas);
+                command.Parameters.AddWithValue("@PARTIDAS_PERDIDAS", jugador.PartidasPerdidas);
+                command.Parameters.AddWithValue("@MAYOR_PUNTAJE", jugador.MayorPuntaje);
                 command.Parameters.AddWithValue("@ESTA_JUGANDO", jugador.EstaJugando);
 
                 command.ExecuteNonQuery();
             }
-            catch (Exception)
+            catch (Exception exc)
             {
-                throw;
+                throw new Exception("Error al conectar con la base de datos Jugadores", exc);
             }
             finally
             {
@@ -135,6 +140,7 @@ namespace Entidades
 
             try
             {
+                command.Parameters.Clear();
                 connection.Open();
                 command.CommandText = "SELECT * FROM JUGADORES_DB WHERE PARTIDAS_GANADAS = (SELECT MAX(PARTIDAS_GANADAS) FROM JUGADORES_DB)";
                 SqlDataReader dataReader = command.ExecuteReader();
@@ -145,15 +151,16 @@ namespace Entidades
                         (dataReader["NOMBRE"].ToString(),
                         int.Parse(dataReader["PARTIDAS_JUGADAS"].ToString()),
                         int.Parse(dataReader["PARTIDAS_GANADAS"].ToString()),
+                        int.Parse(dataReader["PARTIDAS_PERDIDAS"].ToString()),
+                        int.Parse(dataReader["MAYOR_PUNTAJE"].ToString()),
                         ConvertirEstado(dataReader["ESTA_JUGANDO"].ToString())));
                 }
 
                 return jugadores;
             }
-            catch (Exception)
+            catch (Exception exc)
             {
-
-                throw;
+                throw new Exception("Error al conectar con la base de datos Jugadores", exc);
             }
             finally
             {
@@ -167,6 +174,7 @@ namespace Entidades
 
             try
             {
+                command.Parameters.Clear();
                 connection.Open();
                 command.CommandText = "SELECT * FROM JUGADORES_DB ORDER BY NOMBRE";
                 SqlDataReader dataReader = command.ExecuteReader();
@@ -177,14 +185,50 @@ namespace Entidades
                         (dataReader["NOMBRE"].ToString(),
                         int.Parse(dataReader["PARTIDAS_JUGADAS"].ToString()),
                         int.Parse(dataReader["PARTIDAS_GANADAS"].ToString()),
+                        int.Parse(dataReader["PARTIDAS_PERDIDAS"].ToString()),
+                        int.Parse(dataReader["MAYOR_PUNTAJE"].ToString()),
                         ConvertirEstado(dataReader["ESTA_JUGANDO"].ToString())));
                 }
 
                 return jugadores;
             }
-            catch (Exception)
+            catch (Exception exc)
             {
-                throw;
+                throw new Exception("Error al conectar con la base de datos Jugadores", exc);
+            }
+            finally
+            {
+                connection.Close();
+            }
+        }
+
+        public static List<Jugador> FiltrarJugadoresPorMayorPuntaje()
+        {
+            List<Jugador> jugadores = new List<Jugador>();
+
+            try
+            {
+                command.Parameters.Clear();
+                connection.Open();
+                command.CommandText = "SELECT * FROM JUGADORES_DB WHERE MAYOR_PUNTAJE = (SELECT MAX(MAYOR_PUNTAJE) FROM JUGADORES_DB)";
+                SqlDataReader dataReader = command.ExecuteReader();
+
+                while (dataReader.Read())
+                {
+                    jugadores.Add(new Jugador
+                        (dataReader["NOMBRE"].ToString(),
+                        int.Parse(dataReader["PARTIDAS_JUGADAS"].ToString()),
+                        int.Parse(dataReader["PARTIDAS_GANADAS"].ToString()),
+                        int.Parse(dataReader["PARTIDAS_PERDIDAS"].ToString()),
+                        int.Parse(dataReader["MAYOR_PUNTAJE"].ToString()),
+                        ConvertirEstado(dataReader["ESTA_JUGANDO"].ToString())));
+                }
+
+                return jugadores;
+            }
+            catch (Exception exc)
+            {
+                throw new Exception("Error al conectar con la base de datos Jugadores", exc);
             }
             finally
             {

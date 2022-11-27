@@ -16,9 +16,13 @@ namespace Vista
     {
         Sala sala;
         List<Carta> mazo;
+        string rutaArchivo;
+        int indiceListaSalas;
         public FrmPrincipal()
         {
             InitializeComponent();
+            rutaArchivo = $"{AppDomain.CurrentDomain.BaseDirectory}" + @"mazoCartas.json";
+            mazo = Serializador.Leer<List<Carta>>(rutaArchivo);
         }
 
         private void btnRegistrarJugador_Click(object sender, EventArgs e)
@@ -33,9 +37,9 @@ namespace Vista
                 {
                     SqlJugador.Guardar(frmAgregarJugador.NuevoJugador);
                 }
-                catch (Exception)
+                catch (Exception exc)
                 {
-                    MessageBox.Show("Ocurrio un error");
+                    MessageBox.Show(exc.Message);
                 }
             }
         }
@@ -51,9 +55,9 @@ namespace Vista
                 {
                     SqlSala.Guardar(frmCrearSala.Sala);
                 }
-                catch (Exception)
+                catch (Exception exc)
                 {
-                    MessageBox.Show("Ocurrio un error");
+                    MessageBox.Show(exc.Message);
                 }
                 finally
                 {
@@ -65,8 +69,6 @@ namespace Vista
         private void FrmPrincipal_Load(object sender, EventArgs e)
         {
             RefrescarDataGridView();
-
-            
         }
 
         private void RefrescarDataGridView()
@@ -83,26 +85,30 @@ namespace Vista
         {
             if (sala is not null)
             {
-                string rutaEscritorio = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
-                string rutaArchivo = Path.Combine(rutaEscritorio, "mazoCartas.json");
-                mazo = Serializador.Leer<List<Carta>>(rutaArchivo);
-                sala.Mazo = mazo;
-                FrmPartida frmPartida = new FrmPartida(sala);
-                frmPartida.Show();
+                if (Administrador.ValidarJugadoresEstenLibresParaJugar(sala.J1, sala.J2))
+                {
+                    sala.Mazo = mazo;
+                    FrmPartida frmPartida = new FrmPartida(sala);
+                    frmPartida.Show();
+                }
+                else
+                {                   
+                    lblError.Text = MostrarMensajeErrorJugadorOcupado(sala.J1, sala.J2);
+                    lblError.Visible = true;
+                }
             }
             else
             {
-                MessageBox.Show("elegir primero la sala");
+                lblError.Text = "Para comenzar una partida, primero debe elegir una sala";
+                lblError.Visible = true;
             }
         }
 
         private void dgvPartidas_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (dgvSalas.SelectedRows.Count > 0)
-            {
-                sala = (Sala)dgvSalas.CurrentRow.DataBoundItem;
-            }
-
+            indiceListaSalas = dgvSalas.CurrentRow.Index;
+            sala = SqlSala.Leer()[indiceListaSalas];
+            lblError.Visible = false;
         }
 
         private void dgvPartidas_Click(object sender, EventArgs e)
@@ -112,43 +118,88 @@ namespace Vista
 
         private void btnVerJugadores_Click(object sender, EventArgs e)
         {
-            StringBuilder sb = new StringBuilder();
-
             try
             {
-                foreach (Jugador j in SqlJugador.OrdenarJugadoresPorNombre())
-                {
-                    sb.AppendLine(j.ToString());
-                    sb.AppendLine();
-                }
-
-                MessageBox.Show(sb.ToString());
+                string listaJugadores = Administrador.MostrarListaJugadoresOrdenados();
+                Estadisticas frmEstadisticas = new Estadisticas("Jugadores ordenados por nombre", listaJugadores);
+                frmEstadisticas.ShowDialog();
             }
-            catch (Exception)
+            catch(Exception exc)
             {
-                MessageBox.Show("Ocurrio un error");
+                MessageBox.Show(exc.Message);
             }
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            StringBuilder sb = new StringBuilder();
-
             try
             {
-                foreach (Jugador j in SqlJugador.FiltrarJugadoresConMasPartidasGanadas())
-                {
-                    sb.AppendLine(j.ToString());
-                    sb.AppendLine();
-                }
-
-                MessageBox.Show(sb.ToString());
+                string jugadoresQueMasGanaron = Administrador.MostrarJugadoresConMasPartidasGanadas();
+                Estadisticas estadisticas = new Estadisticas("Jugadores con mayor cantidad de partidas ganadas", jugadoresQueMasGanaron);
+                estadisticas.ShowDialog();
             }
-            catch (Exception)
+            catch (Exception exc)
             {
-                MessageBox.Show("Ocurrio un error");
+                MessageBox.Show(exc.Message);
             }
+        }
 
+        private void btnPartidasGanadas_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string jugadoresConPartidasGanadas = Administrador.MostrarJugadoresPorPartidasGanadas();
+                Estadisticas estadisticas = new Estadisticas("Partidas ganadas de cada jugador", jugadoresConPartidasGanadas);
+                estadisticas.ShowDialog();
+            }
+            catch (Exception exc)
+            {
+                MessageBox.Show(exc.Message);
+            }
+        }
+
+        private void btnPartidasPerdidas_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string jugadoresConPartidasPerdidas = Administrador.MostrarJugadoresPorPartidasPerdidas();
+                Estadisticas estadisticas = new Estadisticas("Partidas perdidas de cada jugador", jugadoresConPartidasPerdidas);
+                estadisticas.ShowDialog();
+            }
+            catch (Exception exc)
+            {
+                MessageBox.Show(exc.Message);
+            }
+        }
+
+        private string MostrarMensajeErrorJugadorOcupado(Jugador j1, Jugador j2)
+        {
+            if (j1.EstaJugando && j2.EstaJugando)
+            {
+                return $"{j1.Nombre} y {j2.Nombre} ya se encuentran jugando";
+            }
+            else if (j1.EstaJugando)
+            {
+                return $"{j1.Nombre} se encuentra en una partida";
+            }
+            else
+            {
+                return $"{j2.Nombre} se encuentra en una partida";
+            }
+        }
+
+        private void btnPuntajesMaximos_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string jugadoresConMayorPuntaje = Administrador.MostrarJugadoresConMayorPuntaje();
+                Estadisticas estadisticas = new Estadisticas("Jugadores que tienen el maximo puntaje", jugadoresConMayorPuntaje);
+                estadisticas.ShowDialog();
+            }
+            catch (Exception exc)
+            {
+                MessageBox.Show(exc.Message);
+            }
         }
     }
 }

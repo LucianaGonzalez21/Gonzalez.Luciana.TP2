@@ -13,6 +13,8 @@ namespace Entidades.Test
 
     public class TrucoDeberia
     {
+        string rutaArchivo = $"{AppDomain.CurrentDomain.BaseDirectory}" + @"mazoCartas.json";
+
         [TestMethod]
         public void RepartirCartasCorrectamente()
         {
@@ -20,8 +22,6 @@ namespace Entidades.Test
             Truco truco = new Truco();
             Jugador j1 = new Jugador("Pepe");
             Jugador j2 = new Jugador("Juan");
-            string rutaEscritorio = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
-            string rutaArchivo = Path.Combine(rutaEscritorio, "mazoCartas.json");
             List<Carta> mazo = Serializador.Leer<List<Carta>>(rutaArchivo);
 
             //when
@@ -41,8 +41,6 @@ namespace Entidades.Test
             Truco truco = new Truco();
             Jugador j1 = new Jugador("Pepe");
             Jugador j2 = new Jugador("Juan");
-            string rutaEscritorio = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
-            string rutaArchivo = Path.Combine(rutaEscritorio, "mazoCartas.json");
             List<Carta> mazo = Serializador.Leer<List<Carta>>(rutaArchivo);
             Carta c1 = mazo[2];
             Carta c2 = mazo[15];
@@ -51,7 +49,7 @@ namespace Entidades.Test
             Carta cartaGanadora = truco.DefinirCartaGanadora(c1, c2);
             Carta cartaNoGanadora = cartaGanadora == c1 ? c2 : c1;
 
-            //assert
+            //then
             Assert.IsTrue(cartaGanadora.Peso > cartaNoGanadora.Peso);
         }
 
@@ -62,8 +60,6 @@ namespace Entidades.Test
             Truco truco = new Truco();
             Jugador j1 = new Jugador("Pepe");
             Jugador j2 = new Jugador("Juan");
-            string rutaEscritorio = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
-            string rutaArchivo = Path.Combine(rutaEscritorio, "mazoCartas.json");
             List<Carta> mazo = Serializador.Leer<List<Carta>>(rutaArchivo);
             Carta c1 = mazo[2];
             Carta c2 = mazo[5];
