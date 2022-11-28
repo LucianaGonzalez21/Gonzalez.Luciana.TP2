@@ -33,6 +33,7 @@ namespace Vista
         {
             jugador = (Jugador)dgvJugadores.CurrentRow.DataBoundItem;
             lblJugador.Text = jugador.Nombre;
+            lblJugador.Visible = true;
         }
 
         private void btnElegir_Click(object sender, EventArgs e)

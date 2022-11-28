@@ -29,6 +29,7 @@ namespace Vista
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmAgregarJugador));
             this.btnAgregarJugador = new System.Windows.Forms.Button();
             this.txtNombre = new System.Windows.Forms.TextBox();
             this.lblError = new System.Windows.Forms.Label();
@@ -36,17 +37,20 @@ namespace Vista
             // 
             // btnAgregarJugador
             // 
-            this.btnAgregarJugador.Location = new System.Drawing.Point(90, 95);
+            this.btnAgregarJugador.BackColor = System.Drawing.Color.LightGreen;
+            this.btnAgregarJugador.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnAgregarJugador.Font = new System.Drawing.Font("Papyrus", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btnAgregarJugador.Location = new System.Drawing.Point(105, 95);
             this.btnAgregarJugador.Name = "btnAgregarJugador";
-            this.btnAgregarJugador.Size = new System.Drawing.Size(94, 29);
+            this.btnAgregarJugador.Size = new System.Drawing.Size(94, 36);
             this.btnAgregarJugador.TabIndex = 0;
             this.btnAgregarJugador.Text = "Agregar";
-            this.btnAgregarJugador.UseVisualStyleBackColor = true;
+            this.btnAgregarJugador.UseVisualStyleBackColor = false;
             this.btnAgregarJugador.Click += new System.EventHandler(this.btnAgregarJugador_Click);
             // 
             // txtNombre
             // 
-            this.txtNombre.Location = new System.Drawing.Point(78, 45);
+            this.txtNombre.Location = new System.Drawing.Point(93, 45);
             this.txtNombre.Name = "txtNombre";
             this.txtNombre.PlaceholderText = "Ingrese el nombre";
             this.txtNombre.Size = new System.Drawing.Size(131, 27);
@@ -55,9 +59,12 @@ namespace Vista
             // lblError
             // 
             this.lblError.AutoSize = true;
-            this.lblError.Location = new System.Drawing.Point(18, 145);
+            this.lblError.BackColor = System.Drawing.Color.Black;
+            this.lblError.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lblError.ForeColor = System.Drawing.Color.Red;
+            this.lblError.Location = new System.Drawing.Point(12, 148);
             this.lblError.Name = "lblError";
-            this.lblError.Size = new System.Drawing.Size(41, 20);
+            this.lblError.Size = new System.Drawing.Size(45, 19);
             this.lblError.TabIndex = 2;
             this.lblError.Text = "error";
             this.lblError.Visible = false;
@@ -66,10 +73,13 @@ namespace Vista
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(285, 184);
+            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.ClientSize = new System.Drawing.Size(295, 200);
             this.Controls.Add(this.lblError);
             this.Controls.Add(this.txtNombre);
             this.Controls.Add(this.btnAgregarJugador);
+            this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "FrmAgregarJugador";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

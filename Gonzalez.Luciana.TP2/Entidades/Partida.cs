@@ -87,9 +87,6 @@ namespace Entidades
                 jugadorMano = DefinirQuienEsMano(sala.J1, sala.J2, flagCambioDeMano);
                 jugadorDos = DefinirJugadorDos(jugadorMano);
 
-                //InicializarEstadoJugadores(jugadorMano);
-                //InicializarEstadoJugadores(jugadorDos);
-
                 mostrarNotificacion.Invoke($"Jugador mano: {jugadorMano.Nombre}{Environment.NewLine}Jugador 2: " +
                     $"{jugadorDos.Nombre}{Environment.NewLine}");
                 Thread.Sleep(GenerarNumeroRandom());

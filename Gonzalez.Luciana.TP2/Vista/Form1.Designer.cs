@@ -29,6 +29,7 @@ namespace Vista
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmPartida));
             this.rtbPartida = new System.Windows.Forms.RichTextBox();
             this.lblAnunciarGanador = new System.Windows.Forms.Label();
             this.SuspendLayout();
@@ -44,10 +45,12 @@ namespace Vista
             // lblAnunciarGanador
             // 
             this.lblAnunciarGanador.AutoSize = true;
-            this.lblAnunciarGanador.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lblAnunciarGanador.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.lblAnunciarGanador.Font = new System.Drawing.Font("Arial Rounded MT Bold", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lblAnunciarGanador.ForeColor = System.Drawing.Color.MediumSeaGreen;
             this.lblAnunciarGanador.Location = new System.Drawing.Point(12, 350);
             this.lblAnunciarGanador.Name = "lblAnunciarGanador";
-            this.lblAnunciarGanador.Size = new System.Drawing.Size(78, 32);
+            this.lblAnunciarGanador.Size = new System.Drawing.Size(80, 27);
             this.lblAnunciarGanador.TabIndex = 3;
             this.lblAnunciarGanador.Text = "label1";
             this.lblAnunciarGanador.Visible = false;
@@ -56,9 +59,12 @@ namespace Vista
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(599, 450);
             this.Controls.Add(this.lblAnunciarGanador);
             this.Controls.Add(this.rtbPartida);
+            this.DoubleBuffered = true;
             this.Name = "FrmPartida";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Partida";

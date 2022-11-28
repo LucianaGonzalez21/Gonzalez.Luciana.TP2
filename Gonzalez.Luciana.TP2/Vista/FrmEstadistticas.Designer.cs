@@ -29,6 +29,7 @@ namespace Vista
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Estadisticas));
             this.rtbEstadisticas = new System.Windows.Forms.RichTextBox();
             this.lblTitulo = new System.Windows.Forms.Label();
             this.SuspendLayout();
@@ -45,24 +46,26 @@ namespace Vista
             // lblTitulo
             // 
             this.lblTitulo.AutoSize = true;
-            this.lblTitulo.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lblTitulo.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.lblTitulo.Location = new System.Drawing.Point(33, 32);
             this.lblTitulo.Name = "lblTitulo";
-            this.lblTitulo.Size = new System.Drawing.Size(65, 28);
+            this.lblTitulo.Size = new System.Drawing.Size(62, 23);
             this.lblTitulo.TabIndex = 1;
             this.lblTitulo.Text = "label1";
             // 
-            // Estadistticas
+            // Estadisticas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(513, 409);
             this.Controls.Add(this.lblTitulo);
             this.Controls.Add(this.rtbEstadisticas);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Name = "Estadistticas";
+            this.Name = "Estadisticas";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "FrmEstadistticas";
+            this.Text = "Informacion";
             this.Load += new System.EventHandler(this.Estadistticas_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
