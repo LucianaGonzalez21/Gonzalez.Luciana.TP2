@@ -32,6 +32,7 @@ namespace Vista
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmPartida));
             this.rtbPartida = new System.Windows.Forms.RichTextBox();
             this.lblAnunciarGanador = new System.Windows.Forms.Label();
+            this.btnCancelar = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // rtbPartida
@@ -55,6 +56,19 @@ namespace Vista
             this.lblAnunciarGanador.Text = "label1";
             this.lblAnunciarGanador.Visible = false;
             // 
+            // btnCancelar
+            // 
+            this.btnCancelar.BackColor = System.Drawing.Color.LightGreen;
+            this.btnCancelar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnCancelar.Font = new System.Drawing.Font("Papyrus", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btnCancelar.Location = new System.Drawing.Point(474, 407);
+            this.btnCancelar.Name = "btnCancelar";
+            this.btnCancelar.Size = new System.Drawing.Size(113, 31);
+            this.btnCancelar.TabIndex = 4;
+            this.btnCancelar.Text = "Cancelar Partida";
+            this.btnCancelar.UseVisualStyleBackColor = false;
+            this.btnCancelar.Click += new System.EventHandler(this.button1_Click);
+            // 
             // FrmPartida
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -62,6 +76,7 @@ namespace Vista
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(599, 450);
+            this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.lblAnunciarGanador);
             this.Controls.Add(this.rtbPartida);
             this.DoubleBuffered = true;
@@ -78,6 +93,7 @@ namespace Vista
         #endregion
         private System.Windows.Forms.RichTextBox rtbPartida;
         private System.Windows.Forms.Label lblAnunciarGanador;
+        private System.Windows.Forms.Button btnCancelar;
     }
 }
 

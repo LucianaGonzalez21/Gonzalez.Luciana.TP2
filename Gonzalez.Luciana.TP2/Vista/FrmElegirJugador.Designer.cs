@@ -45,7 +45,7 @@ namespace Vista
             this.dgvJugadores.Name = "dgvJugadores";
             this.dgvJugadores.RowHeadersWidth = 51;
             this.dgvJugadores.RowTemplate.Height = 29;
-            this.dgvJugadores.Size = new System.Drawing.Size(371, 188);
+            this.dgvJugadores.Size = new System.Drawing.Size(677, 188);
             this.dgvJugadores.TabIndex = 0;
             this.dgvJugadores.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvJugadores_CellClick);
             // 
@@ -53,7 +53,7 @@ namespace Vista
             // 
             this.btnElegir.BackColor = System.Drawing.Color.LightGreen;
             this.btnElegir.Font = new System.Drawing.Font("Papyrus", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.btnElegir.Location = new System.Drawing.Point(152, 283);
+            this.btnElegir.Location = new System.Drawing.Point(458, 283);
             this.btnElegir.Name = "btnElegir";
             this.btnElegir.Size = new System.Drawing.Size(106, 36);
             this.btnElegir.TabIndex = 1;
@@ -65,7 +65,7 @@ namespace Vista
             // 
             this.btnCancelar.BackColor = System.Drawing.Color.LightGreen;
             this.btnCancelar.Font = new System.Drawing.Font("Papyrus", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.btnCancelar.Location = new System.Drawing.Point(267, 283);
+            this.btnCancelar.Location = new System.Drawing.Point(573, 283);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(106, 36);
             this.btnCancelar.TabIndex = 2;
@@ -99,7 +99,7 @@ namespace Vista
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(376, 331);
+            this.ClientSize = new System.Drawing.Size(685, 331);
             this.Controls.Add(this.lblJugador);
             this.Controls.Add(this.lblNombre);
             this.Controls.Add(this.btnCancelar);

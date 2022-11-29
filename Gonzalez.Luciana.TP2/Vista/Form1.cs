@@ -105,5 +105,16 @@ namespace Vista
             SqlJugador.ModificarPartidasYEstadoDeJugador(j);
         }
 
+        private void button1_Click(object sender, EventArgs e)
+        {
+            DialogResult respuesta = MessageBox.Show("Esta seguro que desea cancelar la partida?", "Cancelar", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
+            if (respuesta == DialogResult.OK)
+            {
+                FinalizarPartida(sala.J1);
+                FinalizarPartida(sala.J2);
+                cancellationTokenSource.Cancel();
+                this.Close();
+            }
+        }
     }
 }
