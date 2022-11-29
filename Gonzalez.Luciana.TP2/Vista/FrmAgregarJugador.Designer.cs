@@ -40,7 +40,7 @@ namespace Vista
             this.btnAgregarJugador.BackColor = System.Drawing.Color.LightGreen;
             this.btnAgregarJugador.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnAgregarJugador.Font = new System.Drawing.Font("Papyrus", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.btnAgregarJugador.Location = new System.Drawing.Point(105, 95);
+            this.btnAgregarJugador.Location = new System.Drawing.Point(128, 95);
             this.btnAgregarJugador.Name = "btnAgregarJugador";
             this.btnAgregarJugador.Size = new System.Drawing.Size(94, 36);
             this.btnAgregarJugador.TabIndex = 0;
@@ -53,7 +53,7 @@ namespace Vista
             this.txtNombre.Location = new System.Drawing.Point(93, 45);
             this.txtNombre.Name = "txtNombre";
             this.txtNombre.PlaceholderText = "Ingrese el nombre";
-            this.txtNombre.Size = new System.Drawing.Size(131, 27);
+            this.txtNombre.Size = new System.Drawing.Size(175, 27);
             this.txtNombre.TabIndex = 1;
             // 
             // lblError
@@ -62,7 +62,7 @@ namespace Vista
             this.lblError.BackColor = System.Drawing.Color.Black;
             this.lblError.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.lblError.ForeColor = System.Drawing.Color.Red;
-            this.lblError.Location = new System.Drawing.Point(12, 148);
+            this.lblError.Location = new System.Drawing.Point(12, 181);
             this.lblError.Name = "lblError";
             this.lblError.Size = new System.Drawing.Size(45, 19);
             this.lblError.TabIndex = 2;
@@ -75,7 +75,7 @@ namespace Vista
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(295, 200);
+            this.ClientSize = new System.Drawing.Size(361, 240);
             this.Controls.Add(this.lblError);
             this.Controls.Add(this.txtNombre);
             this.Controls.Add(this.btnAgregarJugador);
