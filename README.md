@@ -4,6 +4,10 @@ Aplicación de truco
 **Resumen**
 Es una aplicación que simula partidas de truco entre dos jugadores previamente registrados. El usuario podrá elegir a los jugadores que se enfrentan en una partida y visualizarla mientras ésta ocurre. Asimismo, se podrá ver información de los jugadores como la cantidad de partidas que ganaron, los jugadores que posean el puntaje mayor entre todos ellos o quiénes son los que más partidas han ganado.
 
+**Diagrama de clases**
+
+![image](https://user-images.githubusercontent.com/86836988/204612342-72320c2f-3769-4c1e-aa3b-fe28bd7ce817.png)
+
 
 **Funcionamiento**
 
@@ -11,11 +15,13 @@ Es una aplicación que simula partidas de truco entre dos jugadores previamente 
 
 En el formulario principal se puede apreciar un DataGrid con la información de las salas creadas: el id de la misma y los nombres de los jugadores que participen de la partida. Para poder comenzar una partida y visualizarla, es necesario seleccionar una sala del DataGrid, con un click sobre la fila deseada, y luego presionar el botón comenzar. Esto hará que se abra un nuevo formulario,  que mostrará la partida en tiempo real:
 
-![image](https://user-images.githubusercontent.com/86836988/204189264-44f178b4-ccf4-48b5-b17f-97bed73eb0e3.png)
+![image](https://user-images.githubusercontent.com/86836988/204613941-0c757cdf-e105-405c-a666-7bf8d22c8f0c.png)
+
 
 La partida consta de tres rondas y ganará aquel que más puntos haya logrado en total. Cuando la misma finalice, se verán los puntajes de cada jugador y si hay un ganador, aparecerá un mensaje informandolo:
 
-![image](https://user-images.githubusercontent.com/86836988/204189312-96b95703-e2de-4909-b35c-450c31e220a6.png)
+![image](https://user-images.githubusercontent.com/86836988/204614358-c690969e-dbad-4951-913c-be9daddae593.png)
+
 
 En el caso de no haber seleccionado una sala del DataGrid y querer comenzar una partida, se mostrará el siguiente mensaje de error: 
 
@@ -45,15 +51,18 @@ Para crear una sala, hacer click en el botón Crear Sala, que nos llevará al si
 
 Los botones a la izquierda sirven para poder seleccionar a los jugadores que se desea enfrentar en una partida. Al hacer click sobre uno de ellos, se visualizará el siguiente formulario:
 
-![image](https://user-images.githubusercontent.com/86836988/204189666-38577d9d-128f-40e4-9b83-7d5ccb9a1203.png)
+![image](https://user-images.githubusercontent.com/86836988/204612804-fde20304-b3d2-4e25-850f-c1e74781551d.png)
+
 
 Como se puede apreciar, se pueden ver todos los jugadores registrados con su información. Para poder elegir a uno, debe hacerse click sobre la fila donde está el jugador que queramos para la partida. Si no se hace click y se presiona el botón Elegir, se visualizará el siguiente mensaje de error:
 
-![image](https://user-images.githubusercontent.com/86836988/204189702-01ccd3f5-d85a-4a63-8650-92eac8306a8d.png)
+![image](https://user-images.githubusercontent.com/86836988/204612892-682b7772-a7e6-4e22-b812-7d11dbf21610.png)
+
 
 Si se selecciona correctamente, el nombre aparecerá en pantalla, de la siguiente manera:
 
-![image](https://user-images.githubusercontent.com/86836988/204189740-55385973-4cf1-42c2-b939-cbf918b509e8.png)
+![image](https://user-images.githubusercontent.com/86836988/204612971-2a023189-8984-4e86-972c-64b52768565f.png)
+
 
 Ahora, al clickear el botón elegir, se cerrará este formulario y volveremos al anterior, que ahora se verá así:
 
@@ -91,6 +100,7 @@ Con el botón Puntajes Máximos, veremos a el o los jugadores que poseen el máx
 
 **Justificación de temas:**
 * Excepciones
+
 Implementé manejo de excepciones principalmente en archivos, serialización y sql, para que el programa no se cierre en plena ejecución si no se encontró la ruta de un archivo o no se pudo conectar con la base de datos.
 
 ![image](https://user-images.githubusercontent.com/86836988/204190148-ae34400f-b702-443c-a547-95093e1fbf42.png)
@@ -104,6 +114,7 @@ Si el formulario principal no pudo deserializar el mazo, se mostrará un mensaje
 ![image](https://user-images.githubusercontent.com/86836988/204190292-633df7a8-ecae-461d-a1ed-04ee137c457e.png)
 
 * Pruebas unitarias
+
 Para probar que los métodos declarados en las clases de la biblioteca Entidades funcionan correctamente, creé un proyecto de pruebas llamado Entidades.Test donde se controla el funcionamiento correcto de tales métodos.
 
 ![image](https://user-images.githubusercontent.com/86836988/204190331-6a628543-be00-4d2e-a838-912f988e98e7.png)
@@ -119,6 +130,7 @@ Así también verifiqué que un método lanzara una excepción cuando debiera.
 La ventaja que encontré al realizar los unit testing es que pude mejorar algunos de los métodos creados, ya que lanzaban excepciones si recibían algo distinto de lo que esperaban.
 
 * Tipos genéricos
+
 Utilicé genéricos en la clase Serializador para que pueda serializar y deserializar cualquier tipo de objeto 
 
 ![image](https://user-images.githubusercontent.com/86836988/204190482-84273b0e-a9dc-467a-83af-17bc49eed536.png)
@@ -130,7 +142,8 @@ En este proyecto, lo implementé para guardar y luego obtener el mazo de cartas 
 
 En la llamada al método, el objeto que pretendía leer era de tipo List<Cartas>, y el retorno se guardó en la variable mazo que también es de tipo List<Carta>
 
-*Interfaces
+* Interfaces
+
 Creé dos interfaces en la biblioteca Entidades:
 
 ![image](https://user-images.githubusercontent.com/86836988/204190546-48c02b0b-6267-4c87-a80b-d2212e08a911.png)
@@ -141,14 +154,16 @@ Ambas las utilizan las clases FrmPartida y Partida.
 Así, tanto la clase Partida como la clase FrmPartida incluye diferentes comportamientos. La clase FrmPartida hereda de la clase Form pero a su vez implementa las operaciones de IHilos y de IPartidaFinalizada. 
 Las clases que implementan estas interfaces realizan la misma operación, pero cada una le da la implementación adecuada según lo que necesite.
 
-*Archivos
+* Archivos
+
 En la clase Partida implementé el método GuardarHistorial que recibe una cadena de texto con el historial de la partida, y éste es guardado en un archivo.
 
 ![image](https://user-images.githubusercontent.com/86836988/204190712-4a122869-5884-4bea-861d-f8acc749765f.png)
 
 Al hacer esto, puedo guardar los historiales y se visualizarán uno debajo de otro. Me pareció una manera ordenada de leer información. Si hiciera un archivo por cada partida, habría demasiados.
 
-*Serialización
+* Serialización
+
 Ya que la serialización permite guardar el estado de un objeto con un formato específico, lo implementé para guardar el mazo de cartas en un archivo Json y luego recrearlo al momento de utilizar la aplicación. 
 
 ![image](https://user-images.githubusercontent.com/86836988/204190754-27fd1c71-9d33-47e9-b792-53ff942886e7.png)
@@ -157,14 +172,16 @@ El método Leer busca en la ruta pasada por parámetro el archivo Json para pode
 
 ![image](https://user-images.githubusercontent.com/86836988/204190786-70b298be-7794-4414-9035-0e1583db8057.png)
 
-*SQL
+* SQL
+
 Utilicé bases de datos para persistir en memoria a los jugadores y a las salas creadas. Estos datos quedan almacenados y pueden utilizarse luego. Por ejemplo, una vez creado un jugador y guardado en la base de datos, puedo utilizarlo para que juegue en otra sala. Sus datos (partidas ganadas, perdidas, etc) quedarán también almacenados por lo tanto, podrá observarse las estadísticas que muestran quién ha ganado más partidas, etc. 
 La ventaja de utilizar bases de datos fue no tener que cargar jugadores o salas cada vez que abriera la aplicación.
 Las clases que implementan SQL son:
 
 ![image](https://user-images.githubusercontent.com/86836988/204190815-c2ff2e2f-3506-437b-a8af-e62007a92376.png)
 
-*Delegados
+* Delegados
+
 Utilicé un delegado de tipo Action para mostrar los movimientos de los jugadores durante una partida.
 
 ![image](https://user-images.githubusercontent.com/86836988/204190864-13a458f7-9106-4a8a-b009-1bc42fb7b784.png)
@@ -179,19 +196,22 @@ Así, cuando invoco al delegado en el método JugarPartida() de la clase Partida
 
 Hacerlo de esta manera me permitió que los movimientos se puedan ir mostrando de a poco en vez de pasar la partida entera al rich text box.
 
-*Multi Hilo y Concurrencia
+* Multi Hilo y Concurrencia
+
 Utilicé este tema para que varias partidas se estén dando al mismo tiempo, creando así un hilo por cada partida, independientes entre sí y del hilo que los creó.
 
 ![image](https://user-images.githubusercontent.com/86836988/204190997-83e3c321-cc27-4ac4-a277-a9aeffd134f6.png)
 
 La ventaja que esto presenta es no tener que esperar a que una partida termine para que empiece otra. Si asi fuera, para jugar varias partidas, el tiempo total que hay que esperar es la suma de todas ellas. En cambio, al iniciar cada una en un hilo distinto, el tiempo máximo de espera es el de la partida que dure más.
 
-*Eventos
+* Eventos
+
 En la clase jugador creé un delegado y un evento para anunciar al ganador de una partida.
 
 ![image](https://user-images.githubusercontent.com/86836988/204191032-d79f480b-bdc4-4f2d-8942-dbc80467ccab.png)
 
 Cuando la partida termina, y cambia el estado del jugador de EsGanador = false a EsGanador = true, se dispara el evento EventoEsGanador, que tiene como manejador al método AnunciarGanador de FrmPartida.
+
 ![image](https://user-images.githubusercontent.com/86836988/204191063-beee0dae-6471-4957-8caa-40fdcc94c397.png)
 
 ![image](https://user-images.githubusercontent.com/86836988/204191092-1f69bd2c-4c79-4935-9279-baa83801da69.png)
