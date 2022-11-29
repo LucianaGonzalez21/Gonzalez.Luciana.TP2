@@ -48,5 +48,14 @@ namespace Vista
                 this.Close();
             }
         }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            DialogResult respuesta = MessageBox.Show("Esta seguro que desea cancelar?", "Cancelar", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
+            if (respuesta == DialogResult.OK)
+            {
+                this.Close();
+            }
+        }
     }
 }
