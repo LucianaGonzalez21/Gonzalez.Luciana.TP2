@@ -169,6 +169,8 @@ namespace Vista
             this.Controls.Add(this.lblJugadorDos);
             this.Controls.Add(this.lblJugadorUno);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "FrmCrearSala";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Crear Sala";

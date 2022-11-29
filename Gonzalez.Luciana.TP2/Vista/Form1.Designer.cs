@@ -80,6 +80,8 @@ namespace Vista
             this.Controls.Add(this.lblAnunciarGanador);
             this.Controls.Add(this.rtbPartida);
             this.DoubleBuffered = true;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "FrmPartida";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Partida";

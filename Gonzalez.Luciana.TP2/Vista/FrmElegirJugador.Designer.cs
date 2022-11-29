@@ -106,6 +106,8 @@ namespace Vista
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnElegir);
             this.Controls.Add(this.dgvJugadores);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "FrmElegirJugador";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Elegir Jugador";

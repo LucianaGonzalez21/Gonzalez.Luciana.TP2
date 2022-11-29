@@ -63,6 +63,8 @@ namespace Vista
             this.Controls.Add(this.lblTitulo);
             this.Controls.Add(this.rtbEstadisticas);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "Estadisticas";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Informacion";
